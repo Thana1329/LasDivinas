@@ -9,3 +9,5 @@ def Login(request):
 def productos(request):
     return render(request, "productos.html")
 
+def contacto(request):
+    return render(request, "contactos.html")

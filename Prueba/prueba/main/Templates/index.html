@@ -21,10 +21,12 @@
            <a href="#"  class="menu-icono"><img src="{% static 'images/logo.png' %}" alt=""></a>
             <nav class="navbar">
                 <ul>
-                    <li><a href="#">Inicio</a></li>
+                    <li><a href="{% url 'main:home' %}">Inicio</a></li>
                     <!--Boton de inicio de sesión-->
                     <li><a href="{% url 'main:Login' %}">Login</a></li>
+                    <!--Boton para vista de productos-->
                     <li><a href="{% url 'main:productos' %}">Productos</a></li>
+                    <!--Boton para contactos-->
                     <li><a href="{% url 'main:contactos' %}">Contacto</a></li>
                 </ul>
             </nav>

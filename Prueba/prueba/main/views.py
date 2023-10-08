@@ -6,4 +6,8 @@ def home(request):
 def Login(request):
     return render(request, "login-Registro.html")
 
+def productos(request):
+    return render(request, "productos.html")
 
+def contacto(request):
+    return render(request, "contactos.html")

@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+.menu {
+    padding: 0;
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    text-align: right;
+}
+
+.menu li a{
+    text-decoration:none;
+    color: black;
+    padding: 20px;
+    display: block;
+}
+
+.menu li {
+    display: inline-block;
+}
+
+.menu li {
+    margin-right: 20px;
+}
+
+.menu li:first-child {
+    margin-left: auto; /* Mueve el primer elemento a la derecha para que esté alineado con el borde derecho */
+}
+
+.menu li a:hover{
+    background: #4a0a68;
+}
+
+.logo{
+    font-size: 25px;
+    color: #7270ec;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.menu .navbar ul li a{
+    font-size: 18px;
+    padding: 20px;
+    color: black;
+    display: block;
+}
+
+.menu-icono{
+    width: 25px;
+}

@@ -1,7 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
-# Request: realiza peticiones
-#HttpResponse: enviar respuesta usando el protocolo HTTP.
+def home(request):
+    return render(request, "index.html")
 
+def Login(request):
+    return render(request, "login-Registro.html")
 
+def productos(request):
+    return render(request, "productos.html")
+
+def contacto(request):
+    return render(request, "contactos.html")

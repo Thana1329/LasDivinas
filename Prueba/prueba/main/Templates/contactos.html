@@ -1,11 +1,46 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Formulario de Contacto</title>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link rel="stylesheet" href="{%static 'css/stilo.css' %}">
+    <link rel="stylesheet" href="{%static 'css/menu.css' %}">
+    <!--Tipaje de fuente-->
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=Q3MEh2UNaEWPTkhkjKAndTnLK9LWtB216b5BbtW12vrP22FoRF6yFyy-psuwMzXriwZchnCB_Wn9sTCR93EGIiRuN25vufgBEJtiFN2EEvRaGFnQVSGBwtNJONZ1G_CMXXeEEpyMehBn8lUSgV0bNOzCalmpf6_ZRMpF9fGUUNmuptd8pQMnX9foC_-5VKaKme1a7Af7rUDYxqvK371WcJ_z0nRcfGAcclfof8qhkAYMHia4yB31Le5BieeAfBR9Rmtod5nlSv0D-FSC6BRZ_lJxCUz06FFe66IUdFUcA0zES6V_qnhSrpK6ofi_oh7KBxLixOdzhRmhXDuwH9Ftsw" charset="UTF-8"></script><script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>
+    <div class="menu container">
+
+        <a href="#" class="logo">LasDivinas</a>
+
+        <input type="checkbox" id="menu" />
+       <a href="#"  class="menu-icono"><img src="{% static 'images/logo.png' %}" alt=""></a>
+        <nav class="navbar">
+            <ul>
+                <li><a href="{% url 'main:home' %}">Inicio</a></li>
+                <!--Boton de inicio de sesión-->
+                <li><a href="{% url 'main:Login' %}">Login</a></li>
+                <li><a href="{% url 'main:productos' %}">Productos</a></li>
+                <li><a href="{% url 'main:contactos' %}">Contacto</a></li>
+            </ul>
+        </nav>
+        
 </head>
 <body>
-    <h1>Plantilla para contacto... hacer formulario</h1>
+    <div class="container-form">
+        <div class="info-form">
+            <h2>Contáctanos</h2>
+            <p>No dudes en contactarte con nosotros si tienes algun reclamo, sugerencia o problema con tus compras, nuestros especialistas en atención al cliente estarán encantados de ayudarte.</p>
+            <a href="#"><i class="fa fa-phone"></i> (+507)776-9617</a>
+            <a href="#"><i class="fa fa-envelope"></i> teamdivinas@gmail.com</a>
+            <a href="#"><i class="fa fa-map-marked"></i> Chiriquí, Panamá</a>
+        </div>
+        <form action="#" autocomplete="off">
+            <input type="text" name="nombre" placeholder="Tu Nombre" class="campo">
+            <input type="email" name="email" placeholder="Tu Email" class="campo">
+            <textarea name="mensaje" placeholder="Tu Mensaje..."></textarea>
+            <input type="submit" name="enviar" value="Enviar Mensaje" class="btn-enviar">
+        </form>
+    </div>
 </body>
 </html>

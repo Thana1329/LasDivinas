@@ -9,9 +9,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'css/stilo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
 </head>
 <body>
 
+    <header class="heads">
+        <div class="menu container">
+
+            <a href="#" class="logo">LasDivinas</a>
+
+            <input type="checkbox" id="menu" />
+            <nav class="navbar">
+                <ul>
+                    <li><a href="{% url 'main:home' %}">Inicio</a></li>
+                    <!--Boton de inicio de sesión-->
+                    <li><a href="{% url 'main:login-Registro' %}">Login</a></li>
+                    <!--Boton para vista de productos-->
+                    <li><a href="{% url 'main:productos' %}">Productos</a></li>
+                    <!--Boton para contactos-->
+                    <li><a href="{% url 'main:contactos' %}">Contacto</a></li>
+                </ul>
+            </nav>
+    </header>
+    
     <main>
         <div class="contenedor__todo">
             <div class="caja__trasera">

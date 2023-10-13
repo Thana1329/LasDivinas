@@ -14,11 +14,17 @@ body{
     background-attachment: fixed;
 }
 
+.heads{
+    display: flex;
+    align-items: center;
+    margin-bottom: 200px;
+}
+
 main{
     width: 100%;
     padding: 20px;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 200px;
 }
 
 .contenedor__todo{
@@ -129,9 +135,6 @@ main{
     color: white;
     outline: none;
 }
-
-
-
 
 .formulario__login{
     opacity: 1;

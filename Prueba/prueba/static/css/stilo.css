@@ -17,21 +17,61 @@ body{
 .heads{
     display: flex;
     align-items: center;
-    margin-bottom: 200px;
+    min-height: 80vh;
 }
 
-main{
-    width: 100%;
+.menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+.logo{
+    font-size: 25px;
+    color: #7270ec;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.menu .navbar ul li{
+    position: relative;
+    float: left;
+}
+
+.menu .navbar ul li a{
+    font-size: 18px;
     padding: 20px;
-    margin: auto;
-    margin-top: 200px;
+    color: #feffff;
+    display: block;
+}
+
+.menu .navbar ul li a:hover{
+    color: #7270ec;
+}
+
+#menu{
+    display: none;
+}
+
+.menu-icono{
+    width: 25px;
+}
+
+.menu label{
+    cursor: pointer;
+    display: none;
 }
 
 .contenedor__todo{
     width: 100%;
     max-width: 800px;
     margin: auto;
-    position: relative;
+    position: static;
 }
 
 .caja__trasera{

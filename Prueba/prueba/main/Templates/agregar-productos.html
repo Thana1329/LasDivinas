@@ -4,21 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"> <!--Biblioteca para los cambios de imagen-->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}"></head>
-<body>
+    <title>Agregar Productos</title>
     
-
-
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="{%static 'css/ag.css' %}">
+    <link rel="stylesheet" href="{%static 'css/menu.css' %}">
     <header class="header">
         <div class="menu container">
-
             <a href="#" class="logo">LasDivinas</a>
-
-            <input type="checkbox" id="menu" />
-           <a href="#"  class="menu-icono"><img src="{% static 'images/logo.png' %}" alt=""></a>
             <nav class="navbar">
                 <ul>
                     <li><a href="{% url 'main:home' %}">Inicio</a></li>
@@ -30,25 +24,47 @@
                     <li><a href="{% url 'main:contactos' %}">Contacto</a></li>
                 </ul>
             </nav>
-
-            <div>
-                <ul>
-                    <li class="submenu">
-                        <img src="{% static 'images/car.svg' %}" id="img-carrito" alt="">
-                        <div id="carrito">
-                            <table id="lista-carrito">
-                                <thead>
-                                    <tr>
-                                        <th>Imagen</th>
-                                        <th>Nombre</th>
-                                        <th>Precio</th>
-                                        <th></th>                                                 
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                            <a href="#" id="vaciar-carrito" class="btn-3">Vaciar carrito</a>
-                        </div>
-                    </li>
-                </ul>
+        <div>        
+</head>
+<body>
+    <div class="contenedor-ag">
+        <form action="" method="post">
+            <h2>Agregar Producto</h2>
+            <div class="content">
+                <div class="input-box">
+                    <label for="name">Nombre del Producto</label>
+                    <input type="text" placeholder="Nombre del Producto..." name="name" required>
+                </div>
+                <div class="input-box">
+                    <label for="description">Descripción</label>
+                    <input type="text" placeholder="Descripción del Producto..." name="description" required>
+                </div>
+                <div class="input-box">
+                    <label for="price">Precio</label>
+                    <input type="number" step="0.01" placeholder="Precio del Producto..." name="price" required>
+                </div>
+                <div class="input-box">
+                    <label for="image">Imagen del Producto</label>
+                    <input type="file" name="image" accept="image/*" required>
+                </div>
+                <div class="input-box">
+                    <label for="category">Categoría del Producto</label>
+                    <select name="category" required>
+                        <option value="prenda superior">Prenda Superior</option>
+                        <option value="prenda inferior">Prenda Inferior</option>
+                        <option value="zapatillas">Zapatillas</option>
+                        <option value="laptops">Laptops</option>
+                        <option value="celulares">Celulares</option>
+                        <option value="audífonos">Audífonos</option>
+                    </select>
+                </div>
             </div>
+            <div class="button-container">
+                <button type="submit">Guardar Producto</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+
+        

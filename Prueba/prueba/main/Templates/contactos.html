@@ -13,13 +13,12 @@
 
         <a href="#" class="logo">LasDivinas</a>
 
-        <input type="checkbox" id="menu" />
-       <a href="#"  class="menu-icono"><img src="{% static 'images/logo.png' %}" alt=""></a>
+
         <nav class="navbar">
             <ul>
                 <li><a href="{% url 'main:home' %}">Inicio</a></li>
                 <!--Boton de inicio de sesión-->
-                <li><a href="{% url 'main:Login' %}">Login</a></li>
+                <li><a href="{% url 'main:login-Registro' %}">Login</a></li>
                 <li><a href="{% url 'main:productos' %}">Productos</a></li>
                 <li><a href="{% url 'main:contactos' %}">Contacto</a></li>
             </ul>

@@ -41,3 +41,6 @@ def agregarproducto(request):
     else:
         form = agregarproductosForm()
     return render(request, "agregar-productos.html", {"form": form})
+
+def detallesproductos(request):
+    return render(request, "detalles-productos.html")

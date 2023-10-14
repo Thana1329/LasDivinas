@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import RegistroUsuarioForm
+from .forms import agregarproductosForm
+from .models import productos
 
 def home(request):
     form = RegistroUsuarioForm()
@@ -26,3 +28,16 @@ def registrar_usuario(request):
         form = RegistroUsuarioForm()
 
     return render(request, 'login-Registro.html', {'form': form})
+
+
+    return render(request, "agregar-productos.html")
+
+def agregarproducto(request):
+    if request.method == "POST":
+        form = agregarproductosForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('main:productos')
+    else:
+        form = agregarproductosForm()
+    return render(request, "agregar-productos.html", {"form": form})

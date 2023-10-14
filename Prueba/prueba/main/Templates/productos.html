@@ -1,11 +1,80 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=>, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"> <!--Biblioteca para los cambios de imagen-->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"></head>
 <body>
-    <h1>Plantilla de Productos...</h1>
-</body>
-</html>
+    <header class="header">
+        <div class="menu container">
+
+            <a href="#" class="logo">LasDivinas</a>
+
+            <input type="checkbox" id="menu" />
+           <a href="#"  class="menu-icono"><img src="{% static 'images/logo.png' %}" alt=""></a>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="{% url 'main:home' %}">Inicio</a></li>
+                    <!--Boton de inicio de sesión-->
+                    <li><a href="{% url 'main:login-Registro' %}">Login</a></li>
+                    <!--Boton para vista de productos-->
+                    <li><a href="{% url 'main:productos' %}">Productos</a></li>
+                    <!--Boton para contactos-->
+                    <li><a href="{% url 'main:contactos' %}">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div>
+                <ul>
+                    <li class="submenu">
+                        <img src="{% static 'images/car.svg' %}" id="img-carrito" alt="">
+                        <div id="carrito">
+                            <table id="lista-carrito">
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Nombre</th>
+                                        <th>Precio</th>
+                                        <th></th>                                                 
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <a href="#" id="vaciar-carrito" class="btn-3">Vaciar carrito</a>
+                        </div>
+                    </li>
+                </ul>
+                <div>
+                    <button type="button" class="btn btn-primary circular-btn" id="agregar-productos-button" style="font-size: 24px; position: fixed;">+</button>
+                    <script>
+                      document.addEventListener("DOMContentLoaded", function() {
+                        // Obtén una referencia al botón por su ID
+                        var agregarproductoButton = document.getElementById("agregar-productos-button");
+                        // Agrega un evento de clic al botón
+                        agregarproductoButton.addEventListener("click", function() {
+                          // Redirige al usuario a la página 'crear-blog.html'
+                          window.location.href = "{% url 'main:agregar-productos' %}";
+                        });
+                      });
+                    </script>
+                  </div>
+                  
+<style>
+/* Estilos para el botón circular */
+.circular-btn {
+border-radius: 60%;
+width: 60px;
+height: 60px;
+position: fixed;
+bottom: 40px;
+right: 50px;
+transition: transform 0.3s;
+}
+
+.circular-btn:hover {
+background-color: #7270ec;
+transform: rotate(45deg);
+}

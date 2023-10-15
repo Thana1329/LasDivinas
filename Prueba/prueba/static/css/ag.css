@@ -17,9 +17,10 @@ body{
     align-items: center;
 }
 
+
 .contenedor-ag {
     max-width: 650px;
-    padding: 28px;
+    padding: 30px;
     margin: 0 auto;
     border-radius: 10px;
     overflow: hidden;
@@ -35,7 +36,7 @@ h2 {
     font-weight: bold;
     text-align: center; 
     color: #7270ec;
-    padding-bottom: 8px;
+    padding-bottom: 15px;
     border-bottom: 1px solid silver;
 }
 
@@ -49,7 +50,8 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     width: 50%;
-    padding-bottom: 15px;
+    padding-bottom: 35px;
+    flex-direction: column;
 }
 .input-box:nth-child(2n){
     justify-content: end;
@@ -69,17 +71,15 @@ h2 {
     margin: 15px 0;
 }
 .button-container button{
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-    display: block;
-    font-size: 20px;
-    color: #fff;
+    padding: 15px;
+    font-size: 16px;
     border: none;
-    border-radius: 5px;
-    background-image: linear-gradient(to right, #aa076b, #61045f);
+    outline: 0px;
+    background: rgb(73, 26, 95);
+    color: white;
+    border-radius: 3px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 300ms ease;
 }
 .button-container button:hover{
     background-image: linear-gradient(to right, #61045f, #aa076b);

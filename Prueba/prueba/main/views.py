@@ -41,3 +41,10 @@ def agregarproducto(request):
     else:
         form = agregarproductosForm()
     return render(request, "agregar-productos.html", {"form": form})
+
+def detallesproductos(request):
+    detalles_productos = {
+     'product_name': 'Air Jordan 1 Zoom CMFT 2',
+        # Otros datos de detalles_productos aquí
+    }
+    return render(request, 'detalles-productos.html', {'detalles_productos': detallesproductos})

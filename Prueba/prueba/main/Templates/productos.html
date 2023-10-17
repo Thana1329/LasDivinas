@@ -48,6 +48,21 @@
                     </li>
                 </ul>
                 <div>
+                    <button type="button" class="btn btn-primary" id="agregar-categoria-button"style="font-size: 24px; position: fixed; top: 70px; left: 20px;">Agregar categoria</button>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            // Obtén una referencia al botón por su ID
+                            var agregarCategoriaButton = document.getElementById("agregar-categoria-button");
+                            // Agrega un evento de clic al botón
+                            agregarCategoriaButton.addEventListener("click", function() {
+                                // Redirige al usuario a la página de creación de categoría
+                                window.location.href = "{% url 'main:agregar-categoria' %}";
+                            });
+                        });
+                    </script>
+                </div>
+                
+                <div>
                     <button type="button" class="btn btn-primary circular-btn" id="agregar-productos-button" style="font-size: 24px; position: fixed;">+</button>
                     <script>
                       document.addEventListener("DOMContentLoaded", function() {

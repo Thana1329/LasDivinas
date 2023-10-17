@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from .forms import RegistroUsuarioForm
-from .forms import agregarproductosForm
-from .models import productos
+from .forms import RegistroUsuarioForm, agregarproductosForm, categoriaForm
+from .models import productos, categoria
 
 def home(request):
     form = RegistroUsuarioForm()
@@ -36,11 +35,14 @@ def agregarproducto(request):
     if request.method == "POST":
         form = agregarproductosForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            form.save()  # Guarda el producto en la base de datos
             return redirect('main:productos')
     else:
         form = agregarproductosForm()
-    return render(request, "agregar-productos.html", {"form": form})
+    
+    categorias = categoria.objects.all()  # Obtén todas las categorías
+    return render(request, "agregar-productos.html", {"form": form, "categorias": categorias})
+
 
 def detallesproductos(request):
     detalles_productos = {
@@ -48,3 +50,16 @@ def detallesproductos(request):
         # Otros datos de detalles_productos aquí
     }
     return render(request, 'detalles-productos.html', {'detalles_productos': detallesproductos})
+
+
+def agregarcategoria(request):
+    if request.method == "POST":
+        form = categoriaForm(request.POST)
+        if form.is_valid():
+            form.save()  # Guarda los datos del formulario en la base de datos
+            return redirect('main:productos')
+    else:
+        form = categoriaForm()
+
+    categorias = categoria.objects.all() 
+    return render(request, 'agregar-categoria.html', {"form": form, "categorias": categorias})

@@ -1,6 +1,5 @@
 from django import forms
-from .models import registroUsuario
-from .models import productos
+from .models import registroUsuario, productos, categoria
 
 class RegistroUsuarioForm(forms.ModelForm):
     class Meta:
@@ -10,5 +9,10 @@ class RegistroUsuarioForm(forms.ModelForm):
 class agregarproductosForm(forms.ModelForm):
     class Meta:
         model = productos
-        fields = ('name', 'description', 'price', 'slug')	
+        fields = ('name', 'description', 'price', 'image', 'category')	
+
+class categoriaForm(forms.ModelForm):
+    class Meta:
+        model = categoria
+        fields =('name',)
 

@@ -30,17 +30,8 @@
     <div class="contenedor-ag">
         <form method="post" action="" enctype="multipart/form-data">
             {% csrf_token %}
-            <h2>Editar Categoría</h2>
+            <h2>Agregar Categoría</h2>
             <div class="content">
-                <div class="input-box">
-                    <label for="categoria">Selecciona la Categoría a Editar:</label>
-                    <select name="categoria" required>
-                        <option value="">Selecciona una categoría</option>
-                        {% for c in categorias %}
-                            <option value="{{ c.id }}">{{ c.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
                 <div class="input-box">
                     <label for="name">Nombre de la Categoría:</label>
                     <input type="text" placeholder="Nombre de la Categoría..." name="name" required>
@@ -52,6 +43,18 @@
             </div>
             <div class="button-container">
                 <button type="submit">Guardar Cambios</button>
+                <button type="button" id="editar-categoria-button">Editar Categoría</buttontype></button>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        // Obtén una referencia al botón por su ID
+                        var editarCategoriaButton = document.getElementById("editar-categoria-button");
+                        // Agrega un evento de clic al botón
+                        editarCategoriaButton.addEventListener("click", function() {
+                            // Redirige al usuario a la página de creación de categoría
+                            window.location.href = "{% url 'main:editar-categoria' %}";
+                        });
+                    });
+                </script>
             </div>
         </form>
     </div>

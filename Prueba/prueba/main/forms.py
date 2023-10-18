@@ -12,7 +12,13 @@ class AgregarproductosForm(forms.ModelForm):
         fields = ('name', 'description', 'price', 'image', 'category')	
 
 class CategoriaForm(forms.ModelForm):
+    categorias = [(c.id, c.name) for c in Categoria.objects.all()]  # Recupera las categorías desde la base de datos
+    categoria = forms.ChoiceField(choices=categorias, required=False)  # Opciones para el campo "categoria"
+    name = forms.CharField()
+    description = forms.CharField()
+
     class Meta:
         model = Categoria
-        fields =('name','description',)
+        fields =('name','description','categoria', )
+
 

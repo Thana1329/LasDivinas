@@ -33,12 +33,12 @@
             <div class="content">
                 <div class="input-box">
                     <label for="categoria">Selecciona la Categoría a Editar:</label>
-                    <select name="categoria" required>
+                    <select name="categoria">
                         <option value="">Selecciona una categoría</option>
-                        {% for category in categorias %}
-                            <option value="{{ category.id }}">{{ category.name }}</option>
+                        {% for c in categorias %}
+                            <option value="{{ c.id }}">{{ c.name }}</option>
                         {% endfor %}
-                    </select>
+                    </select>                    
                 </div>
                 <div class="input-box">
                     <label for="name">Nuevo Nombre de la Categoría:</label>

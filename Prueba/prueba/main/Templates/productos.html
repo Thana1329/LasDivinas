@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Productos</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"> <!--Biblioteca para los cambios de imagen-->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}"></head>
 <body>
@@ -61,7 +61,33 @@
                         });
                     </script>
                 </div>
-                
+            <section class="promos container" id="lista-1">
+                <h2>Categorías</h2>
+                 <div class="categories">
+                    {% for categoria in categorias %}
+                    <div class="categorie">
+                        <h3>{{ categoria.name }}</h3>
+                        <ul>
+                            {% for producto in categoria.producto_set.all %}
+                            <li>
+                                <div class="categorie-1">
+                                    <h4>{{ producto.name }}</h4>
+                                    <p class="description">{{ producto.description }}</p>
+                                    <div class="prices">
+                                        <p class="Precio">$ {{ producto.price }}</p>
+                                    </div>
+                                    <a href="#" class="agregar-carrito btn-3" data-id="{{ producto.id }}">Agregar al carrito</a>
+                                </div>
+                                <div class="categorie-img">
+                                    <img src="{{ producto.image.url }}" alt="{{ producto.name }}">
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>                
                 <div>
                     <button type="button" class="btn btn-primary circular-btn" id="agregar-productos-button" style="font-size: 24px; position: fixed;">+</button>
                     <script>
@@ -75,7 +101,8 @@
                         });
                       });
                     </script>
-                  </div>
+                </div>
+                
                   
 <style>
 /* Estilos para el botón circular */

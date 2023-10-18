@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import registroUsuario, productos, categoria
+from .models import registroUsuario, Productos, Categoria
 
 # Register your models here.
 admin.site.register(registroUsuario)
-admin.site.register(productos)
-admin.site.register(categoria)
+admin.site.register(Productos)
+admin.site.register(Categoria)

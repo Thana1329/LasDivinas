@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
-from .forms import RegistroUsuarioForm, agregarproductosForm, categoriaForm
-from .models import productos, categoria
+from .forms import RegistroUsuarioForm, AgregarproductosForm, CategoriaForm
+from .models import Productos, Categoria
+
 
 def home(request):
     form = RegistroUsuarioForm()
@@ -33,14 +34,14 @@ def registrar_usuario(request):
 
 def agregarproducto(request):
     if request.method == "POST":
-        form = agregarproductosForm(request.POST, request.FILES)
+        form = AgregarproductosForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()  # Guarda el producto en la base de datos
             return redirect('main:productos')
     else:
-        form = agregarproductosForm()
+        form = AgregarproductosForm()
     
-    categorias = categoria.objects.all()  # Obtén todas las categorías
+    categorias = Categoria.objects.all()
     return render(request, "agregar-productos.html", {"form": form, "categorias": categorias})
 
 
@@ -53,13 +54,24 @@ def detallesproductos(request):
 
 
 def agregarcategoria(request):
-    if request.method == "POST":
-        form = categoriaForm(request.POST)
-        if form.is_valid():
-            form.save()  # Guarda los datos del formulario en la base de datos
-            return redirect('main:productos')
-    else:
-        form = categoriaForm()
+    
+    categorias = Categoria.objects.all()
 
-    categorias = categoria.objects.all() 
+    if request.method == 'POST':
+        form = CategoriaForm(request.POST)
+        if form.is_valid():
+            categoria_id = form.cleaned_data['categoria']  # Recupera la categoría seleccionada del formulario
+            categoria = Categoria.objects.get(id=categoria_id)  # Obtiene la cat
+            categoria.name = form.cleaned_data['name']
+            categoria.description = form.cleaned_data['description']
+
+            # Guarda la categoría actualizada en la base de datos
+            categoria.save()
+
+            return redirect('main:agregar-categoria')  # Redirige a la lista de categorías o donde sea necesario
+    else:
+        form = CategoriaForm()
     return render(request, 'agregar-categoria.html', {"form": form, "categorias": categorias})
+
+
+

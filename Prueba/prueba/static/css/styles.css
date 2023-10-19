@@ -325,6 +325,205 @@ hr{
     font-size: 16px;
 }
 
+.Productos{
+    background-color: #6c69f9; /*Color de toda la pagina*/
+    font-family: 'Poppins', sans-serif;
+}
+
+.logos{
+    font-size: 25px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.menus{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+.menus .navbar ul li{
+    position: relative;
+    float: left;
+}
+
+.menus .navbar ul li a{
+    font-size: 18px;
+    padding: 20px;
+    color: #feffff;
+    display: block;
+}
+
+.menus .navbar ul li a:hover{
+    color: #242430;
+}
+
+#menus{
+    display: none;
+}
+
+.menus-icono{
+    width: 25px;
+}
+
+.menus label{
+    cursor: pointer;
+    display: none;
+}
+
+.Productos{
+    padding: 100px 0 100px 0;
+    display: flex;
+}
+
+
+img{
+    max-width: 100%;
+}
+
+.container-items{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 55px;
+    justify-items: center;
+    position: relative;
+}
+
+.container-n h1{
+    font-size: 35px;
+    color: #feffff;
+    margin-bottom: 50px;
+    text-align: center;
+    margin-left: 650px;
+    position: absolute;
+}
+
+.items{
+    border-radius: 10px;
+    margin-left: 100px;
+}
+
+.items:hover{
+    box-shadow: 0 10px 20px rgba(0, 0  , 0, 0.20);
+}
+
+
+.items img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    transition: all .5s;
+}
+
+.items figure{
+    overflow: hidden;
+}
+
+.items:hover img{
+    transform: scale(1.2);
+}
+
+.info-product{
+    padding: 15px 30px;
+    line-height: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info-product h2{
+    color: #fff;
+    size: 18px;
+}
+
+.price{
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+}
+
+.info-product button{
+    border: none;
+    background: none;
+    background-color: #000;
+    color: #fff;
+    padding: 15px 10px;
+    cursor: pointer;
+}
+
+.categorias{
+    background-color: #6c69f9; /*Color de toda la pagina*/
+    font-family: 'Poppins', sans-serif;
+}
+
+.loguito{
+    font-size: 25px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.menuus{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+.menuus .navbar ul li{
+    position: relative;
+    float: left;
+}
+
+.menuus .navbar ul li a{
+    font-size: 18px;
+    padding: 20px;
+    color: #feffff;
+    display: block;
+}
+
+.menuus .navbar ul li a:hover{
+    color: #242430;
+}
+
+#menuus{
+    display: none;
+}
+
+.menuus-icono{
+    width: 25px;
+}
+
+.menuus label{
+    cursor: pointer;
+    display: none;
+}
+
+.categorias{
+    padding: 100px 0 100px 0;
+    display: flex;
+}
+
+.promos h2{
+    color: #fff;
+    font-size: 35px;
+    margin-bottom: 50px;
+    text-align: center;
+    margin-left: 500px;
+    position: absolute;
+}
 
 @media(max-width:991px){
 

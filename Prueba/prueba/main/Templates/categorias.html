@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorias</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"> <!--Biblioteca para los cambios de imagen-->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <header class="header">
+        <div class="menu container">
+            <a href="#" class="logo">LasDivinas</a>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="{% url 'main:home' %}">Inicio</a></li>
+                    <!--Boton de inicio de sesión-->
+                    <li><a href="{% url 'main:login-Registro' %}">Login</a></li>
+                    <!--Boton para vista de productos-->
+                    <li><a href="{% url 'main:productos' %}">Productos</a></li>
+                    <!--Boton para contactos-->
+                    <li><a href="{% url 'main:contactos' %}">Contacto</a></li>
+                </ul>
+            </nav>
+        <div>
+    </header> 
+</head>
+<body>
+        <div>
+            <div>
+                <button type="button" class="btn btn-primary circular-btn" id="agregar-categoria-button" style="font-size: 24px; position: fixed;">+</button>
+                <script>
+                  document.addEventListener("DOMContentLoaded", function() {
+                    var agregarCategoriaButton = document.getElementById("agregar-categoria-button");
+                    agregarCategoriaButton.addEventListener("click", function() {
+                      window.location.href = "{% url 'main:agregar-categoria' %}";
+                    });
+                  });
+                </script>
+            </div>
+        </div>
+    
+
+    <!-- Categorias se muestran aquí -->
+    <section class="promos container" id="lista-1">
+        <h2>Categorias</h2>
+        <div class="categories">
+            <div class="categorie">
+                <ul>
+                    {% for c in categorias %}
+                        <li>
+                            <strong>Nombre:</strong> {{ c.name }}
+                            <strong>Descripción:</strong> {{ c.description }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Resto de tu contenido -->
+    
+</body>
+<style>
+    .circular-btn {
+    border-radius: 60%;
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 40px;
+    right: 50px;
+    transition: transform 0.3s;
+}
+    
+.circular-btn:hover {
+    background-color: #7270ec;
+    transform: rotate(45deg);
+}
+</style>
+</html>

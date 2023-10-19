@@ -20,6 +20,8 @@
                     <li><a href="{% url 'main:login-Registro' %}">Login</a></li>
                     <!--Boton para vista de productos-->
                     <li><a href="{% url 'main:productos' %}">Productos</a></li>
+                     <!--Boton para categoria-->
+                     <li><a href="{% url 'main:categorias' %}">Categoria</a></li>
                     <!--Boton para contactos-->
                     <li><a href="{% url 'main:contactos' %}">Contacto</a></li>
                 </ul>
@@ -42,7 +44,6 @@
                 </div>
             </div>
             <div class="button-container">
-                <button type="submit">Guardar Cambios</button>
                 <button type="button" id="editar-categoria-button">Editar Categoría</buttontype></button>
                 <script>
                     document.addEventListener("DOMContentLoaded", function() {
@@ -54,6 +55,19 @@
                             window.location.href = "{% url 'main:editar-categoria' %}";
                         });
                     });
+                </script>
+                 <button type="submit">Guardar Cambios</button>
+                <button type="button" id="eliminar-categoria-button">Eliminar Categoría</button>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                    
+                    var eliminarCategoriaButton = document.getElementById("eliminar-categoria-button");
+
+                    eliminarCategoriaButton.addEventListener("click", function() {
+
+                        window.location.href = "{% url 'main:eliminar-categoria' %}"
+                    })
+                    })
                 </script>
             </div>
         </form>

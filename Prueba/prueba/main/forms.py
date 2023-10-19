@@ -1,10 +1,9 @@
 from django import forms
-from .models import registroUsuario, Productos, Categoria
+from .models import Productos, Categoria
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
-class RegistroUsuarioForm(forms.ModelForm):
-    class Meta:
-        model = registroUsuario
-        fields = ['nombre', 'email', 'usuario', 'contrasena']
+
 
 class AgregarproductosForm(forms.ModelForm):
     class Meta:
@@ -20,3 +19,10 @@ class CategoriaForm(forms.ModelForm):
     class Meta:
         model = Categoria
         fields =('name','description','categoria', )
+
+
+class CustomUserCreationForm(UserCreationForm):
+    
+    class Meta:
+        model = User
+        fields = ['username', "first_name", "last_name", "email", "password1", "password2"]

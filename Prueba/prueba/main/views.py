@@ -1,14 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from .forms import RegistroUsuarioForm, AgregarproductosForm, CategoriaForm
+from django.contrib.auth.decorators import login_required
+from .forms import  AgregarproductosForm, CategoriaForm, CustomUserCreationForm
 from .models import Productos, Categoria
 from django.http import HttpResponse
 from django.views import generic
 
 
+
+@login_required
 def home(request):
-    form = RegistroUsuarioForm()
-    return render(request, "index.html", {'form': form})
+    return render(request, "index.html")
 
 
 def productosvistas(request): 
@@ -32,18 +35,6 @@ def categoriavistas(request):
 
     return render(request, 'categorias.html', {'categorias': categorias, 'productos': productos})
 
-
-
-def registrar_usuario(request):
-    if request.method == 'POST':
-        form = RegistroUsuarioForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('main:home')
-    else:
-        form = RegistroUsuarioForm()
-
-    return render(request, 'login-Registro.html', {'form': form})
 
 
 
@@ -177,3 +168,20 @@ def eliminarcategoria(request):
             mensaje_error = "La categoria seleccionada no existe."
     categorias = Categoria.objects.all()
     return render(request, 'eliminar-categoria.html', {'categorias': categorias})
+
+def registro(request):
+    data = {
+        'form': CustomUserCreationForm
+    }
+
+    if request.method == 'POST':
+        formulario = CustomUserCreationForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"]) 
+            login(request, user)
+            messages.success(request, "Te has registrado correctamente")
+            return redirect(to="login")
+        data['form'] = formulario
+    return render(request, 'registration/registro.html',data)
+

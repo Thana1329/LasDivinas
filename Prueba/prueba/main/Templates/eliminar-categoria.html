@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Productos</title>
+    <title>Agregar Categoría</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
@@ -30,41 +30,26 @@
 </head>
 <body>
     <div class="contenedor-ag">
-        <form method="post" action="" enctype="multipart/form-data">
-            <h2>Agregar Producto</h2>
+        <form method="post">
+            {% csrf_token %}
+            <h2>Eliminar Categoría</h2>
             <div class="content">
                 <div class="input-box">
-                    <label for="name">Nombre del Producto</label>
-                    <input type="text" placeholder="Nombre del Producto..." name="name" required>
-                </div>
-                <div class="input-box">
-                    <label for="description">Descripción</label>
-                    <input type="text" placeholder="Descripción del Producto..." name="description" required>
-                </div>
-                <div class="input-box">
-                    <label for="price">Precio</label>
-                    <input type="number" step="0.01" placeholder="Precio del Producto..." name="price" required>
-                </div>
-                <div class="input-box">
-                    <label for="image">Imagen del Producto</label>
-                    <input type="file" class="form-control" id="image" name="image" required>
-                </div>
-                <div class="input-box">
-                    <label for="category">Categoría del Producto</label>
-                    <select name="category" required>
-                        {% for category in categorias %}
-                            <option value="{{ category.id }}">{{ category|capfirst }}</option>
+                    <label for="categoria_id">Selecciona la Categoría a Eliminar:</label>
+                    <select name="categoria_id" required>
+                        <option value="">Selecciona una categoría</option>
+                        {% for c in categorias %}
+                            <option value="{{ c.id }}">{{ c.name }}</option>
                         {% endfor %}
-                    </select>
-                </div>               
-                {% csrf_token %}
+                    </select>  
+                </div>                  
             </div>
             <div class="button-container">
-                <button type="submit">Guardar Producto</button>
-            </div>
+                <button type="submit">Eliminar Categoría</button>
+            </div>  
         </form>
+        {% if mensaje_error %}
+            <p>{{ mensaje_error }}</p>
+        {% endif %}
     </div>
 </body>
-
-
-        

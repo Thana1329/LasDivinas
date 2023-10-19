@@ -20,11 +20,14 @@
                     <li><a href="{% url 'main:login-Registro' %}">Login</a></li>
                     <!--Boton para vista de productos-->
                     <li><a href="{% url 'main:productos' %}">Productos</a></li>
+                     <!--Boton para categoria-->
+                     <li><a href="{% url 'main:categorias' %}">Categoria</a></li>
                     <!--Boton para contactos-->
                     <li><a href="{% url 'main:contactos' %}">Contacto</a></li>
                 </ul>
             </nav>
-        <div>        
+        <div>
+    </header>        
 </head>
 <body>
     <div class="contenedor-ag">
@@ -46,7 +49,7 @@
                 </div>
                 <div class="input-box">
                     <label for="description">Nueva Descripción:</label>
-                    <input type="text" placeholder="Descripción del Producto..." name="description" required>
+                    <input type="text" placeholder="Descripción del Producto..." name="description" >
                 </div>
             </div>
             {% csrf_token %}

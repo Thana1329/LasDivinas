@@ -4,108 +4,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos</title>
+    <title>Categorias</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"> <!--Biblioteca para los cambios de imagen-->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}"></head>
-<body>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
     <header class="header">
         <div class="menu container">
-
             <a href="#" class="logo">LasDivinas</a>
-
-            <input type="checkbox" id="menu" />
-           <a href="#"  class="menu-icono"><img src="{% static 'images/logo.png' %}" alt=""></a>
             <nav class="navbar">
                 <ul>
                     <li><a href="{% url 'main:home' %}">Inicio</a></li>
                     <!--Boton de inicio de sesión-->
                     <li><a href="{% url 'main:login-Registro' %}">Login</a></li>
                     <!--Boton para vista de productos-->
-                    <li><a href="{% url 'main:productos' %}">Productos</a></li>
+                    <li><a href="{% url 'main:categorias' %}">Categorias</a></li>
                     <!--Boton para contactos-->
                     <li><a href="{% url 'main:contactos' %}">Contacto</a></li>
                 </ul>
             </nav>
-
-            <div>
-                <ul>
-                    <li class="submenu">
-                        <img src="{% static 'images/car.svg' %}" id="img-carrito" alt="">
-                        <div id="carrito">
-                            <table id="lista-carrito">
-                                <thead>
-                                    <tr>
-                                        <th>Imagen</th>
-                                        <th>Nombre</th>
-                                        <th>Precio</th>
-                                        <th></th>                                                 
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                            <a href="#" id="vaciar-carrito" class="btn-3">Vaciar carrito</a>
-                        </div>
-                    </li>
-                </ul>
-                <div>
-                    <button type="button" class="btn btn-primary" id="agregar-categoria-button"style="font-size: 24px; position: fixed; top: 70px; left: 20px;">Agregar categoria</button>
-                    <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            // Obtén una referencia al botón por su ID
-                            var agregarCategoriaButton = document.getElementById("agregar-categoria-button");
-                            // Agrega un evento de clic al botón
-                            agregarCategoriaButton.addEventListener("click", function() {
-                                // Redirige al usuario a la página de creación de categoría
-                                window.location.href = "{% url 'main:agregar-categoria' %}";
-                            });
-                        });
-                    </script>
-                </div>
-            <section class="promos container" id="lista-1">
-                <h2>Categorías</h2>
-                 <div class="categories">
-                    {% for categoria in categorias %}
-                    <div class="categorie">
-                        <h3>{{ categoria.name }}</h3>
-                        <ul>
-                            {% for producto in categoria.producto_set.all %}
-                            <li>
-                                <div class="categorie-1">
-                                    <h4>{{ producto.name }}</h4>
-                                    <p class="description">{{ producto.description }}</p>
-                                    <div class="prices">
-                                        <p class="Precio">$ {{ producto.price }}</p>
-                                    </div>
-                                    <a href="#" class="agregar-carrito btn-3" data-id="{{ producto.id }}">Agregar al carrito</a>
-                                </div>
-                                <div class="categorie-img">
-                                    <img src="{{ producto.image.url }}" alt="{{ producto.name }}">
-                                </div>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    {% endfor %}
-                </div>
-            </section>                
-                <div>
-                    <button type="button" class="btn btn-primary circular-btn" id="agregar-productos-button" style="font-size: 24px; position: fixed;">+</button>
-                    <script>
-                      document.addEventListener("DOMContentLoaded", function() {
+        <div>
+    </header> 
+</head>
+<body>
+    <div>
+        <div>
+            <button type="button" class="btn btn-primary circular-btn" id="agregar-productos-button" style="font-size: 24px; position: fixed;">+</button>
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
                         // Obtén una referencia al botón por su ID
-                        var agregarproductoButton = document.getElementById("agregar-productos-button");
+                    var agregarproductoButton = document.getElementById("agregar-productos-button");
                         // Agrega un evento de clic al botón
-                        agregarproductoButton.addEventListener("click", function() {
+                    agregarproductoButton.addEventListener("click", function() {
                           // Redirige al usuario a la página 'crear-blog.html'
-                          window.location.href = "{% url 'main:agregar-productos' %}";
-                        });
-                      });
-                    </script>
-                </div>
-                
-                  
+                    window.location.href = "{% url 'main:agregar-productos' %}";
+                    });
+                    });
+            </script>
+        </div>
+    </div>
+
+
+<!-- Categorias se muestran aquí -->
+<section class="promos container" id="lista-1">
+    <h2>Productos</h2>
+    <div class="categories">
+        <div class="categorie">
+            <ul>
+                {% for p in productos %}
+                    <li>
+                        <p><strong>Nombre del Producto:</strong> {{ p.name }}</p>
+                        <p><strong>Descripción:</strong> {{ p.description }}</p>
+                        <p><strong>Precio:</strong> {{ p.price }}</p>
+                        <p><strong>Categoría:</strong> {{ p.category }}</p>
+                        <img src="{{ p.image.url }}" alt="{{ p.name }}" width="200">
+                        <hr>  <!-- Línea horizontal para separar productos -->
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Resto de tu contenido -->
+
+</body>
 <style>
-/* Estilos para el botón circular */
 .circular-btn {
 border-radius: 60%;
 width: 60px;
@@ -120,3 +83,4 @@ transition: transform 0.3s;
 background-color: #7270ec;
 transform: rotate(45deg);
 }
+</style>

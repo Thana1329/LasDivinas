@@ -209,7 +209,7 @@ hr{
     text-align: center;
 }
 
-.promos h2{
+.promos h1{
     font-size: 50px;
     color: #feffff;
     margin-bottom: 35px;
@@ -325,7 +325,10 @@ hr{
     font-size: 16px;
 }
 
-.Productos{
+
+/*Productos y categorias*/
+
+.Productoos{
     background-color: #6c69f9; /*Color de toda la pagina*/
     font-family: 'Poppins', sans-serif;
 }
@@ -377,7 +380,7 @@ hr{
     display: none;
 }
 
-.Productos{
+.Productoos{
     padding: 100px 0 100px 0;
     display: flex;
 }
@@ -413,7 +416,6 @@ img{
 .items:hover{
     box-shadow: 0 10px 20px rgba(0, 0  , 0, 0.20);
 }
-
 
 .items img{
     width: 100%;
@@ -466,7 +468,7 @@ img{
 
 .loguito{
     font-size: 25px;
-    color: #fff;
+    color: #242430;
     text-transform: uppercase;
     font-weight: 800;
 }

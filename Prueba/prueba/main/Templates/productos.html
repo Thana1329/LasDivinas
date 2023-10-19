@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categorias</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"> <!--Biblioteca para los cambios de imagen-->
+    <link rel="stylesheet" href="{% static 'css/prueba.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
     <header class="header">
@@ -26,7 +27,23 @@
     </header> 
 </head>
 <body>
-    <div>
+    {% for categoria, productos in categorias_con_productos.items %}
+    <h1>{{ categoria.name }}</h1>
+    <div class="container-items">
+        {% for producto in productos %}
+        <div class="items">
+            <figure>
+                <img src="{{ producto.image.url }}" alt="{{ producto.name }}">
+            </figure>
+            <div class="info-product">
+                <h2>{{ producto.name }}</h2>
+                <p class="price">$ {{ producto.price }}</p>
+                <a href="{% url 'main:producto' producto.id %}">Más información</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endfor %}
         <div>
             <button type="button" class="btn btn-primary circular-btn" id="agregar-productos-button" style="font-size: 24px; position: fixed;">+</button>
             <script>
@@ -42,30 +59,6 @@
             </script>
         </div>
     </div>
-
-
-<!-- Categorias se muestran aquí -->
-<section class="promos container" id="lista-1">
-    <h2>Productos</h2>
-    <div class="categories">
-        <div class="categorie">
-            <ul>
-                {% for p in productos %}
-                    <li>
-                        <p><strong>Nombre del Producto:</strong> {{ p.name }}</p>
-                        <p><strong>Descripción:</strong> {{ p.description }}</p>
-                        <p><strong>Precio:</strong> {{ p.price }}</p>
-                        <p><strong>Categoría:</strong> {{ p.category }}</p>
-                        <img src="{{ p.image.url }}" alt="{{ p.name }}" width="200">
-                        <hr>  <!-- Línea horizontal para separar productos -->
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-</section>
-
-<!-- Resto de tu contenido -->
 
 </body>
 <style>

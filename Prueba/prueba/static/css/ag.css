@@ -5,6 +5,7 @@
     text-decoration: none;
     font-family: sans-serif;
     box-sizing: border-box;
+    list-style: none;
 }
 
 body{
@@ -17,6 +18,58 @@ body{
     align-items: center;
 }
 
+.heads{
+    display: flex;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+.logo{
+    font-size: 25px;
+    color: #7270ec;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.menu .navbar ul li{
+    position: relative;
+    float: left;
+}
+
+.menu .navbar ul li a{
+    font-size: 18px;
+    padding: 20px;
+    color: #feffff;
+    display: block;
+}
+
+.menu .navbar ul li a:hover{
+    color: #7270ec;
+}
+
+#menu{
+    display: none;
+}
+
+.menu-icono{
+    width: 25px;
+}
+
+.menu label{
+    cursor: pointer;
+    display: none;
+}
 
 .contenedor-ag {
     max-width: 650px;
@@ -46,6 +99,7 @@ h2 {
     justify-content: space-between;
     padding: 20px 0;
 }
+
 .input-box{
     display: flex;
     flex-wrap: wrap;
@@ -53,9 +107,11 @@ h2 {
     padding-bottom: 35px;
     flex-direction: column;
 }
+
 .input-box:nth-child(2n){
     justify-content: end;
 }
+
 .input-box input{
     height: 40px;
     width: 95%;
@@ -64,12 +120,15 @@ h2 {
     border: 1px solid #ccc;
     outline: none;
 }
+
 .input-box:is(:focus,:valid){
     box-shadow: o 3px 6px rgba(0, 0, 0, 0.2);
 }
+
 .button-container{
     margin: 15px 0;
 }
+
 .button-container button{
     padding: 15px;
     font-size: 16px;
@@ -81,9 +140,11 @@ h2 {
     cursor: pointer;
     transition: all 300ms ease;
 }
+
 .button-container button:hover{
     background-image: linear-gradient(to right, #61045f, #aa076b);
 }
+
 @media (max-width: 600px){
     .contenedor-ag{
         min-width: 200px;

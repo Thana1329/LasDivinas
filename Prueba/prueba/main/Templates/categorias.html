@@ -19,8 +19,6 @@
                      <!--Boton para categoria-->
                      <li><a href="{% url 'main:categorias' %}">Categoria</a></li>
                     <!--Boton para contactos-->
-                    <li><a href="{% url 'main:contactos' %}">Contacto</a></li>
-                    <!--Boton de inicio de sesión/cerrar sesión-->
                     {% if user.is_authenticated %}
                     <li>
                         <a href="{% url 'logout' %} ">cerrar sesión</a>

@@ -25,3 +25,10 @@ class Productos(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Resena(models.Model):
+    producto = models.ForeignKey(Productos, on_delete=models.CASCADE)
+    comentario = models.TextField()
+
+    def str(self):
+        return f'Reseña de {self.producto.name}'

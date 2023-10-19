@@ -9,11 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="{%static 'css/ag.css' %}">
-    <link rel="stylesheet" href="{%static 'css/menu.css' %}">
-    <header class="header">
-        <div class="menu container">
-            <a href="#" class="logo">LasDivinas</a>
-            <nav class="navbar">
+    <link rel="stylesheet" href="{%static 'css/styles.css' %}">
+
+    <header class="headie">
+        <div class="mennu container">
+            <a href="#" class="loogo">LasDivinas</a>
+            <nav class="naavbar">
                 <ul>
                     <li><a href="{% url 'main:home' %}">Inicio</a></li>
                     <!--Boton para vista de productos-->
@@ -21,8 +22,6 @@
                      <!--Boton para categoria-->
                      <li><a href="{% url 'main:categorias' %}">Categoria</a></li>
                     <!--Boton para contactos-->
-                    <li><a href="{% url 'main:contactos' %}">Contacto</a></li>
-                    <!--Boton de inicio de sesión/cerrar sesión-->
                     {% if user.is_authenticated %}
                     <li>
                         <a href="{% url 'logout' %} ">cerrar sesión</a>
@@ -38,13 +37,15 @@
                 </ul>
             </nav>
         <div>        
-</head>
-<body>
-    <div class="contenedor-ag">
+    </head>
+
+
+<body class="dct">
+    <div class="contenedor-agg">
         <form method="post" action="" enctype="multipart/form-data">
             {% csrf_token %}
             <h2>Agregar Categoría</h2>
-            <div class="content">
+            <div class="contentC">
                 <div class="input-box">
                     <label for="name">Nombre de la Categoría:</label>
                     <input type="text" placeholder="Nombre de la Categoría..." name="name" required>

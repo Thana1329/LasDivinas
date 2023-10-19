@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from .forms import  AgregarproductosForm, CategoriaForm, CustomUserCreationForm
-from .models import Productos, Categoria
+from .forms import  AgregarproductosForm, CategoriaForm, CustomUserCreationForm, ResenaForm
+from .models import Productos, Categoria, Resena
 from django.http import HttpResponse
 from django.views import generic
 
@@ -24,17 +24,12 @@ def productosvistas(request):
 
     return render(request, 'productos.html', {'categorias_con_productos': categorias_con_productos})
 
-    
-
-def contacto(request):
-    return render(request, "contactos.html")
 
 def categoriavistas(request):
     categorias = Categoria.objects.all()
     productos = Productos.objects.all()
 
     return render(request, 'categorias.html', {'categorias': categorias, 'productos': productos})
-
 
 
 
@@ -103,7 +98,26 @@ def eliminarproducto(request):
     productos = Productos.objects.all()
     return render(request, 'eliminar-productos.html', {"productos": productos})
     
-               
+from django.urls import reverse
+from django.shortcuts import redirect
+
+def detallesproductos(request, producto_id):
+    producto = get_object_or_404(Productos, pk=producto_id)
+    resenas = Resena.objects.filter(producto=producto)
+
+    if request.method == 'POST':
+        form = ResenaForm(request.POST)
+        if form.is_valid():
+            comentario = form.cleaned_data['comentario']
+            Resena.objects.create(producto=producto, comentario=comentario)
+            # Redirige a la vista 'producto' con el parámetro producto_id
+            url = reverse('main:producto', args=[producto_id])
+            return redirect(url)
+
+    else:
+        form = ResenaForm()
+
+    return render(request, 'detalles-productos.html', {'producto': producto, 'reseñas': resenas, 'form': form})
 
 
 def detallesproductos(request, producto_id):

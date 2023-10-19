@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="{%static 'css/ag.css' %}">
-    <link rel="stylesheet" href="{%static 'css/styles.css' %}">
+    
     
 <body>
     <header class="heads">
@@ -24,8 +24,6 @@
                      <!--Boton para categoria-->
                      <li><a href="{% url 'main:categorias' %}">Categoria</a></li>
                     <!--Boton para contactos-->
-                    <li><a href="{% url 'main:contactos' %}">Contacto</a></li>
-                    <!--Boton de inicio de sesión/cerrar sesión-->
                     {% if user.is_authenticated %}
                     <li>
                         <a href="{% url 'logout' %} ">cerrar sesión</a>
@@ -73,35 +71,8 @@
                 {% csrf_token %}
             </div>
             <div class="button-container">
-                <button type="button" id="editar-producto-button">Editar Producto</buttontype></button>
-                <script>
-                    document.addEventListener("DOMContentLoaded", function() {
-                        // Obtén una referencia al botón por su ID
-                        var editarProductoButton = document.getElementById("editar-producto-button");
-                        // Agrega un evento de clic al botón
-                        editarProductoButton.addEventListener("click", function() {
-                            // Redirige al usuario a la página de creación de categoría
-                            window.location.href = "{% url 'main:editar-productos' %}";
-                        });
-                    });
-                </script>
                 <button type="submit">Guardar Producto</button>
-                <button type="button" id="eliminar-producto-button">Eliminar Producto</buttontype></button>
-                <script>
-                    document.addEventListener("DOMContentLoaded", function() {
-                        // Obtén una referencia al botón por su ID
-                        var eliminarProductoButton = document.getElementById("eliminar-producto-button");
-                        // Agrega un evento de clic al botón
-                        eliminarProductoButton.addEventListener("click", function() {
-                            // Redirige al usuario a la página de creación de categoría
-                            window.location.href = "{% url 'main:eliminar-productos' %}";
-                        });
-                    });
-                </script>
             </div>
         </form>
     </div>
 </body>
-
-
-        

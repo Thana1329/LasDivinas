@@ -14,7 +14,7 @@ body{
     background-attachment: fixed;
 }
 
-.heads{
+.head{
     display: flex;
     align-items: center;
     min-height: 80vh;

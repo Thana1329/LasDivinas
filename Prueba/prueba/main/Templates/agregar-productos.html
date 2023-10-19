@@ -62,7 +62,31 @@
                 {% csrf_token %}
             </div>
             <div class="button-container">
+                <button type="button" id="editar-producto-button">Editar Producto</buttontype></button>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        // Obtén una referencia al botón por su ID
+                        var editarProductoButton = document.getElementById("editar-producto-button");
+                        // Agrega un evento de clic al botón
+                        editarProductoButton.addEventListener("click", function() {
+                            // Redirige al usuario a la página de creación de categoría
+                            window.location.href = "{% url 'main:editar-productos' %}";
+                        });
+                    });
+                </script>
                 <button type="submit">Guardar Producto</button>
+                <button type="button" id="eliminar-producto-button">Eliminar Producto</buttontype></button>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        // Obtén una referencia al botón por su ID
+                        var eliminarProductoButton = document.getElementById("eliminar-producto-button");
+                        // Agrega un evento de clic al botón
+                        eliminarProductoButton.addEventListener("click", function() {
+                            // Redirige al usuario a la página de creación de categoría
+                            window.location.href = "{% url 'main:eliminar-productos' %}";
+                        });
+                    });
+                </script>
             </div>
         </form>
     </div>

@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categorias</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"> <!--Biblioteca para los cambios de imagen-->
+    <link rel="stylesheet" href="{% static 'css/prueba.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
     <header class="header">
-        <div class="menus container">
-            <a href="#" class="logos">LasDivinas</a>
+        <div class="menu container">
+            <a href="#" class="logo">LasDivinas</a>
             <nav class="navbar">
                 <ul>
                     <li><a href="{% url 'main:home' %}">Inicio</a></li>
@@ -21,14 +23,27 @@
                     <li><a href="{% url 'main:contactos' %}">Contacto</a></li>
                 </ul>
             </nav>
-        <div>      
+        <div>
     </header> 
-    <div class="container-n">
-        <h1>Productos</h1>
-    </div>
 </head>
-<body class="Productoos">
-    <div> 
+<body>
+    {% for categoria, productos in categorias_con_productos.items %}
+    <h1>{{ categoria.name }}</h1>
+    <div class="container-items">
+        {% for producto in productos %}
+        <div class="items">
+            <figure>
+                <img src="{{ producto.image.url }}" alt="{{ producto.name }}">
+            </figure>
+            <div class="info-product">
+                <h2>{{ producto.name }}</h2>
+                <p class="price">$ {{ producto.price }}</p>
+                <a href="{% url 'main:producto' producto.id %}">Más información</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endfor %}
         <div>
             <button type="button" class="btn btn-primary circular-btn" id="agregar-productos-button" style="font-size: 24px; position: fixed;">+</button>
             <script>
@@ -42,28 +57,8 @@
                     });
                     });
             </script>
-        </div> 
-    </div>
-
-    <div class="container-items">
-        {% for producto in productos %}
-        <div class="items">
-            <figure>
-                <img src="{{ producto.image.url }}" alt="{{ producto.name }}">
-            </figure>
-            <div class="info-product">
-                <h2>{{ producto.name }}</h2>
-                <p class="price">$ {{ producto.price }}</p>
-                <button>Más información</button>
-            </div>
         </div>
-        {% endfor %}
     </div>
-
-
-    
-
-
 
 </body>
 <style>

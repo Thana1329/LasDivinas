@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from .forms import RegistroUsuarioForm, AgregarproductosForm, CategoriaForm
 from .models import Productos, Categoria
+from django.http import HttpResponse
+from django.views import generic
+
 
 def home(request):
     form = RegistroUsuarioForm()
@@ -9,17 +12,27 @@ def home(request):
 
 
 def productosvistas(request): 
-    productos = Productos.objects.all()
+    categorias = Categoria.objects.all()
+    categorias_con_productos = {}  # Un diccionario para almacenar las categorías y sus productos asociados
 
-    return render(request, 'productos.html', {'productos': productos})
+    for categoria in categorias:
+        productos = Productos.objects.filter(category=categoria)  # Filtrar productos por categoría
+        categorias_con_productos[categoria] = productos
+
+    return render(request, 'productos.html', {'categorias_con_productos': categorias_con_productos})
+
+    
 
 def contacto(request):
     return render(request, "contactos.html")
 
 def categoriavistas(request):
-    categorias = Categoria.objects.all()  # Utiliza "categorias" en plural
+    categorias = Categoria.objects.all()
+    productos = Productos.objects.all()
 
-    return render(request, "categorias.html", {'categorias': categorias})  # Pasa "categorias" en el contexto
+    return render(request, 'categorias.html', {'categorias': categorias, 'productos': productos})
+
+
 
 def registrar_usuario(request):
     if request.method == 'POST':
@@ -46,13 +59,73 @@ def agregarproducto(request):
     categorias = Categoria.objects.all()  # Obtén todas las categorías
     return render(request, "agregar-productos.html", {"form": form, "categorias": categorias})
 
+def cargar_producto(producto_id):
+    try:
+        return Productos.objects.get(id=producto_id)
+    except Productos.DoesNotExist:
+        return None
 
-def detallesproductos(request):
-    detalles_productos = {
-     'product_name': 'Air Jordan 1 Zoom CMFT 2',
-        # Otros datos de detalles_productos aquí
+def editarproducto(request):
+    producto_id = None
+    if request.method == 'POST':
+        producto_id = request.POST.get('product_select')  # Obtener el producto seleccionado
+        producto = cargar_producto(producto_id)  # Cargar el producto a editar
+
+        # Crear un formulario con los datos del producto
+        if producto is not None:
+            form = AgregarproductosForm(request.POST, request.FILES, instance=producto)
+
+            if form.is_valid():
+                form.save()  # Guardar los cambios en el producto
+                return redirect('main:productos')
+  # Redirigir a la página de lista de productos o donde desees
+
+    else:
+        form = AgregarproductosForm(instance=None)
+
+    # Obtener la lista de productos y categorías para llenar los formularios
+    productos = Productos.objects.all()
+    categorias = Categoria.objects.all()
+
+    # Resto del código para mostrar el formulario de selección del producto
+    # y el formulario de edición
+
+    context = {
+        'form': form,
+        'producto_id': producto_id,
+        'productos': productos,
+        'categorias': categorias,
     }
-    return render(request, 'detalles-productos.html', {'detalles_productos': detallesproductos})
+
+    return render(request, 'editar-productos.html', context)
+
+def eliminarproducto(request):
+    mensaje_error = None
+    if request.method:
+        producto_id = request.POST.get('producto_id')
+        try:
+            producto = Productos.objects.get(pk=producto_id)
+            producto.delete()
+            return redirect('main:productos')
+        except Productos.DoesNotExist:
+            mensaje_error = "La categoria seleccionada no existe."
+    productos = Productos.objects.all()
+    return render(request, 'eliminar-productos.html', {"productos": productos})
+    
+               
+
+
+def detallesproductos(request, producto_id):
+    producto = get_object_or_404(Productos, pk=producto_id)
+    if request.method == 'POST':
+        form = AgregarproductosForm(request.POST)
+        if form.is_valid():
+            return redirect('producto', producto_id = producto_id)
+    else:
+        form = AgregarproductosForm()
+    return render(request, 'detalles-productos.html', {'producto': producto})
+
+
 
 
 def agregarcategoria(request):

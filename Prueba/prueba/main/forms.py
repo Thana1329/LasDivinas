@@ -20,5 +20,3 @@ class CategoriaForm(forms.ModelForm):
     class Meta:
         model = Categoria
         fields =('name','description','categoria', )
-
-

@@ -19,14 +19,25 @@
             <nav class="navbar">
                 <ul>
                     <li><a href="{% url 'main:home' %}">Inicio</a></li>
-                    <!--Boton de inicio de sesión-->
-                    <li><a href="{% url 'main:login-Registro' %}">Login</a></li>
                     <!--Boton para vista de productos-->
                     <li><a href="{% url 'main:productos' %}">Productos</a></li>
                      <!--Boton para categoria-->
                      <li><a href="{% url 'main:categorias' %}">Categoria</a></li>
                     <!--Boton para contactos-->
                     <li><a href="{% url 'main:contactos' %}">Contacto</a></li>
+                    <!--Boton de inicio de sesión/cerrar sesión-->
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'logout' %} ">cerrar sesión</a>
+                    </li>
+                    <li>
+                        <a href="#">@{{ user.username }}</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'login' %}">iniciar sesión</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </nav>
     </header>
@@ -62,7 +73,31 @@
                 {% csrf_token %}
             </div>
             <div class="button-container">
+                <button type="button" id="editar-producto-button">Editar Producto</buttontype></button>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        // Obtén una referencia al botón por su ID
+                        var editarProductoButton = document.getElementById("editar-producto-button");
+                        // Agrega un evento de clic al botón
+                        editarProductoButton.addEventListener("click", function() {
+                            // Redirige al usuario a la página de creación de categoría
+                            window.location.href = "{% url 'main:editar-productos' %}";
+                        });
+                    });
+                </script>
                 <button type="submit">Guardar Producto</button>
+                <button type="button" id="eliminar-producto-button">Eliminar Producto</buttontype></button>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        // Obtén una referencia al botón por su ID
+                        var eliminarProductoButton = document.getElementById("eliminar-producto-button");
+                        // Agrega un evento de clic al botón
+                        eliminarProductoButton.addEventListener("click", function() {
+                            // Redirige al usuario a la página de creación de categoría
+                            window.location.href = "{% url 'main:eliminar-productos' %}";
+                        });
+                    });
+                </script>
             </div>
         </form>
     </div>

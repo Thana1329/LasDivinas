@@ -16,25 +16,14 @@
             <nav class="navbar">
                 <ul>
                     <li><a href="{% url 'main:home' %}">Inicio</a></li>
+                    <!--Boton de inicio de sesión-->
+                    <li><a href="{% url 'main:login-Registro' %}">Login</a></li>
                     <!--Boton para vista de productos-->
                     <li><a href="{% url 'main:productos' %}">Productos</a></li>
                      <!--Boton para categoria-->
                      <li><a href="{% url 'main:categorias' %}">Categoria</a></li>
                     <!--Boton para contactos-->
                     <li><a href="{% url 'main:contactos' %}">Contacto</a></li>
-                    <!--Boton de inicio de sesión/cerrar sesión-->
-                    {% if user.is_authenticated %}
-                    <li>
-                        <a href="{% url 'logout' %} ">cerrar sesión</a>
-                    </li>
-                    <li>
-                        <a href="#">@{{ user.username }}</a>
-                    </li>
-                    {% else %}
-                    <li>
-                        <a href="{% url 'login' %}">iniciar sesión</a>
-                    </li>
-                    {% endif %}
                 </ul>
             </nav>
         <div>
@@ -43,31 +32,47 @@
 <body>
     <div class="contenedor-ag">
         <form method="post" action="" enctype="multipart/form-data">
-            <h2>Editar Categoría</h2>
+            <h2>Editar Producto</h2>
             <div class="content">
                 <div class="input-box">
-                    <label for="categoria">Selecciona la Categoría a Editar:</label>
-                    <select name="categoria">
+                    <label for="producto">Selecciona el Producto a Editar:</label>
+                    <select name="product_select">
+                        <option value="">Selecciona un producto</option>
+                        {% for p in productos %}
+                            <option value="{{ p.id }}">{{ p.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="name">Nuevo Nombre del Producto:</label>
+                    <input type="text" placeholder="Nombre del Producto..." name="name" required>
+                </div>
+                <div class="input-box">
+                    <label for="description">Nueva Descripción:</label>
+                    <input type="text" placeholder="Descripción del Producto..." name="description">
+                </div>
+                <div class="input-box">
+                    <label for="price">Nuevo Precio:</label>
+                    <input type="number" step="0.01" placeholder="Precio del Producto..." name="price">
+                </div>
+                <div class="input-box">
+                    <label for="category">Nueva Categoría:</label>
+                    <select name="category">
                         <option value="">Selecciona una categoría</option>
                         {% for c in categorias %}
                             <option value="{{ c.id }}">{{ c.name }}</option>
                         {% endfor %}
-                    </select>                    
+                    </select>
                 </div>
                 <div class="input-box">
-                    <label for="name">Nuevo Nombre de la Categoría:</label>
-                    <input type="text" placeholder="Nombre de la Categoría..." name="name" required>
-                </div>
-                <div class="input-box">
-                    <label for="description">Nueva Descripción:</label>
-                    <input type="text" placeholder="Descripción del Producto..." name="description" >
+                    <label for="image">Nueva Imagen:</label>
+                    <input type="file" name="image">
                 </div>
             </div>
             {% csrf_token %}
             <div class="button-container">
                 <button type="submit">Guardar Cambios</button>
-            </div>  
+            </div>
         </form>
     </div>
 </body>
-

@@ -16,25 +16,14 @@
             <nav class="navbar">
                 <ul>
                     <li><a href="{% url 'main:home' %}">Inicio</a></li>
+                    <!--Boton de inicio de sesión-->
+                    <li><a href="{% url 'main:login-Registro' %}">Login</a></li>
                     <!--Boton para vista de productos-->
                     <li><a href="{% url 'main:productos' %}">Productos</a></li>
                      <!--Boton para categoria-->
                      <li><a href="{% url 'main:categorias' %}">Categoria</a></li>
                     <!--Boton para contactos-->
                     <li><a href="{% url 'main:contactos' %}">Contacto</a></li>
-                    <!--Boton de inicio de sesión/cerrar sesión-->
-                    {% if user.is_authenticated %}
-                    <li>
-                        <a href="{% url 'logout' %} ">cerrar sesión</a>
-                    </li>
-                    <li>
-                        <a href="#">@{{ user.username }}</a>
-                    </li>
-                    {% else %}
-                    <li>
-                        <a href="{% url 'login' %}">iniciar sesión</a>
-                    </li>
-                    {% endif %}
                 </ul>
             </nav>
         <div>        
@@ -43,20 +32,20 @@
     <div class="contenedor-ag">
         <form method="post">
             {% csrf_token %}
-            <h2>Eliminar Categoría</h2>
+            <h2>Eliminar Producto</h2>
             <div class="content">
                 <div class="input-box">
-                    <label for="categoria_id">Selecciona la Categoría a Eliminar:</label>
-                    <select name="categoria_id" required>
-                        <option value="">Selecciona una categoría</option>
-                        {% for c in categorias %}
-                            <option value="{{ c.id }}">{{ c.name }}</option>
+                    <label for="producto_id">Selecciona la Producto a Eliminar:</label>
+                    <select name="producto_id" required>
+                        <option value="">Selecciona una producto</option>
+                        {% for p in productos %}
+                            <option value="{{ p.id }}">{{ p.name }}</option>
                         {% endfor %}
                     </select>  
                 </div>                  
             </div>
             <div class="button-container">
-                <button type="submit">Eliminar Categoría</button>
+                <button type="submit">Eliminar Producto</button>
             </div>  
         </form>
         {% if mensaje_error %}

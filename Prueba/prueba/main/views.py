@@ -8,14 +8,18 @@ def home(request):
     return render(request, "index.html", {'form': form})
 
 
-def productos(request):
-    return render(request, "productos.html")
+def productosvistas(request): 
+    productos = Productos.objects.all()
+
+    return render(request, 'productos.html', {'productos': productos})
 
 def contacto(request):
     return render(request, "contactos.html")
 
-from django.shortcuts import render, redirect
-from .forms import RegistroUsuarioForm
+def categoriavistas(request):
+    categorias = Categoria.objects.all()  # Utiliza "categorias" en plural
+
+    return render(request, "categorias.html", {'categorias': categorias})  # Pasa "categorias" en el contexto
 
 def registrar_usuario(request):
     if request.method == 'POST':
@@ -29,7 +33,6 @@ def registrar_usuario(request):
     return render(request, 'login-Registro.html', {'form': form})
 
 
-    return render(request, "agregar-productos.html")
 
 def agregarproducto(request):
     if request.method == "POST":
@@ -87,3 +90,17 @@ def editarcategoria(request):
         form = CategoriaForm()
 
     return render(request, 'editar-categoria.html', {"form": form, "categorias": categorias})
+
+def eliminarcategoria(request):
+    mensaje_error = None
+
+    if request.method == 'POST':
+        categoria_id = request.POST.get('categoria_id')
+        try:
+            categoria = Categoria.objects.get(pk=categoria_id)
+            categoria.delete()
+            return redirect('main:agregar-categoria')
+        except Categoria.DoesNotExist:
+            mensaje_error = "La categoria seleccionada no existe."
+    categorias = Categoria.objects.all()
+    return render(request, 'eliminar-categoria.html', {'categorias': categorias})

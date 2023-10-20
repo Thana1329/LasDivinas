@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from .forms import  AgregarproductosForm, CategoriaForm, CustomUserCreationForm
-from .models import Productos, Categoria
+from .forms import  AgregarproductosForm, CategoriaForm, CustomUserCreationForm, ResenaForm
+from .models import Productos, Categoria, Resena
 from django.http import HttpResponse
 from django.views import generic
+from django.urls import reverse
+
 
 
 
@@ -16,18 +18,16 @@ def home(request):
 
 def productosvistas(request): 
     categorias = Categoria.objects.all()
-    categorias_con_productos = {}  # Un diccionario para almacenar las categorías y sus productos asociados
+    # Un diccionario para almacenar las categorías y sus productos asociados
+    categorias_con_productos = {}
 
     for categoria in categorias:
-        productos = Productos.objects.filter(category=categoria)  # Filtrar productos por categoría
+          # Filtrar productos por categoría
+        productos = Productos.objects.filter(category=categoria)
         categorias_con_productos[categoria] = productos
 
     return render(request, 'productos.html', {'categorias_con_productos': categorias_con_productos})
 
-    
-
-def contacto(request):
-    return render(request, "contactos.html")
 
 def categoriavistas(request):
     categorias = Categoria.objects.all()
@@ -37,17 +37,17 @@ def categoriavistas(request):
 
 
 
-
 def agregarproducto(request):
     if request.method == "POST":
         form = AgregarproductosForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()  # Guarda el producto en la base de datos
+            # Guarda el producto en la base de datos
+            form.save()  
             return redirect('main:productos')
     else:
         form = AgregarproductosForm()
     
-    categorias = Categoria.objects.all()  # Obtén todas las categorías
+    categorias = Categoria.objects.all() 
     return render(request, "agregar-productos.html", {"form": form, "categorias": categorias})
 
 def cargar_producto(producto_id):
@@ -59,27 +59,26 @@ def cargar_producto(producto_id):
 def editarproducto(request):
     producto_id = None
     if request.method == 'POST':
-        producto_id = request.POST.get('product_select')  # Obtener el producto seleccionado
-        producto = cargar_producto(producto_id)  # Cargar el producto a editar
+         # Obtener el producto seleccionado
+        producto_id = request.POST.get('product_select') 
+        # Cargar el producto a editar
+        producto = cargar_producto(producto_id)  
 
-        # Crear un formulario con los datos del producto
+       
         if producto is not None:
             form = AgregarproductosForm(request.POST, request.FILES, instance=producto)
 
             if form.is_valid():
-                form.save()  # Guardar los cambios en el producto
+                form.save() 
                 return redirect('main:productos')
-  # Redirigir a la página de lista de productos o donde desees
 
     else:
         form = AgregarproductosForm(instance=None)
 
-    # Obtener la lista de productos y categorías para llenar los formularios
     productos = Productos.objects.all()
     categorias = Categoria.objects.all()
 
-    # Resto del código para mostrar el formulario de selección del producto
-    # y el formulario de edición
+
 
     context = {
         'form': form,
@@ -103,18 +102,25 @@ def eliminarproducto(request):
     productos = Productos.objects.all()
     return render(request, 'eliminar-productos.html', {"productos": productos})
     
-               
 
 
 def detallesproductos(request, producto_id):
     producto = get_object_or_404(Productos, pk=producto_id)
+    resenas = Resena.objects.filter(producto=producto)
+
     if request.method == 'POST':
-        form = AgregarproductosForm(request.POST)
+        form = ResenaForm(request.POST)
         if form.is_valid():
-            return redirect('producto', producto_id = producto_id)
+            comentario = form.cleaned_data['comentario']
+            Resena.objects.create(producto=producto, comentario=comentario)
+            # Redirige a la vista 'producto' con el parámetro producto_id
+            url = reverse('main:producto', args=[producto_id])
+            return redirect(url)
+
     else:
-        form = AgregarproductosForm()
-    return render(request, 'detalles-productos.html', {'producto': producto})
+        form = ResenaForm()
+
+    return render(request, 'detalles-productos.html', {'producto': producto, 'reseñas': resenas, 'form': form})
 
 
 
@@ -124,7 +130,7 @@ def agregarcategoria(request):
     if request.method == "POST":
         form = CategoriaForm(request.POST)
         if form.is_valid():
-            form.save()  # Guarda los datos del formulario en la base de datos
+            form.save() 
             return redirect('main:productos')
     else:
         form = CategoriaForm()
@@ -134,22 +140,23 @@ def agregarcategoria(request):
 
 
 def editarcategoria(request):
-    categorias = Categoria.objects.all()  # Recupera todas las categorías de la base de datos
+    categorias = Categoria.objects.all() 
 
     if request.method == 'POST':
         form = CategoriaForm(request.POST)
         if form.is_valid():
-            categoria_id = form.cleaned_data['categoria']  # Recupera la categoría seleccionada del formulario
-            categoria = Categoria.objects.get(id=categoria_id)  # Inicializa la variable 'categoria'
+             # Recupera la categoría seleccionada del formulario
+            categoria_id = form.cleaned_data['categoria'] 
+            categoria = Categoria.objects.get(id=categoria_id) 
 
             # Actualiza los campos de la categoría con los valores del formulario
             categoria.name = form.cleaned_data['name']
             categoria.description = form.cleaned_data['description']
 
-            # Guarda la categoría actualizada en la base de datos
+            
             categoria.save()
 
-            return redirect('main:agregar-categoria')  # Redirigir a la lista de categorías o a donde sea necesario
+            return redirect('main:agregar-categoria') 
     else:
         form = CategoriaForm()
 

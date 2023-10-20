@@ -4,7 +4,7 @@ from django.template.defaultfilters import slugify
     
 
 class Categoria(models.Model):
-    name = models.CharField(max_length=50, unique=True)  # Nombre de la categoría
+    name = models.CharField(max_length=50, unique=True)
     description = models.CharField(max_length=500, blank=True, null=True)
 
     def __str__(self):
@@ -21,7 +21,14 @@ class Productos(models.Model):
     description = models.CharField(max_length=500, blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(blank=True, null=True, upload_to="productos")
-    category = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True)  # Vinculación a la categoría
+    category = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.name
+    
+class Resena(models.Model):
+    producto = models.ForeignKey(Productos, on_delete=models.CASCADE)
+    comentario = models.TextField()
+
+    def str(self):
+        return f'Reseña de {self.producto.name}'

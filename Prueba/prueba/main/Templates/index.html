@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"> <!--Biblioteca para los cambios de imagen-->
+    <!--Biblioteca para los cambios de imagen-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"> 
     <link rel="stylesheet" href="{% static 'css/styles.css' %}"></head>
 <body>
     <header class="header">
@@ -15,13 +16,8 @@
             <nav class="navbar">
                 <ul>
                     <li><a href="{% url 'main:home' %}">Inicio</a></li>
-                    <!--Boton para vista de productos-->
                     <li><a href="{% url 'main:productos' %}">Productos</a></li>
-                     <!--Boton para categoria-->
                      <li><a href="{% url 'main:categorias' %}">Categoria</a></li>
-                    <!--Boton para contactos-->
-                    <li><a href="{% url 'main:contactos' %}">Contacto</a></li>
-                    <!--Boton de inicio de sesión/cerrar sesión-->
                     {% if user.is_authenticated %}
                     <li>
                         <a href="{% url 'logout' %} ">cerrar sesión</a>
@@ -125,28 +121,70 @@
     <hr>
     <!--Secciones promo-->
     <section class="promos container" id="lista-1">
-        <h2>Productos</h2>
+        <h1>Promociones</h1>
         <div class="categories">
+            <!--Producto 1-->
             <div class="categorie">
-                <ul>
-                    {% for p in productos %}
-                    <li>
-                        <div class="categorie-1">
-                            <h4>{{ p.name }}</h4>
-                            <p class="description">{{ p.description }}</p>
-                            <div class="prices">
-                                <p class="Precio">$ {{ p.price }}</p>
-                            </div>
-                            <a href="#" class="agregar-carrito btn-3" data-id="{{ p.id }}">Agregar al carrito</a>
-                        </div>
-                        <div class="categorie-img">
-                            <img src="{{ p.image.url }}" alt="{{ p.name }}">
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
+                <div class="categorie-1">
+                    <h3>Promo 1</h3>
+                    <div class="prices">
+                        <p class="price-1">$125</p>
+                        <p class="Precio">$75</p>
+                    </div>
+                    <a href="#" class="agregar-carrito btn-3" data-id="1" >Agregar al carrito</a>
+                </div>
+                <div class="categorie-img">
+                    <img src="{% static 'images/p1.png' %}" alt="">
+                </div>
+            </div>
+
+            <!--Producto 2-->
+            <div class="categorie">
+                <div class="categorie-1">
+                    <h3>Promo 2</h3>
+                    <div class="prices">
+                        <p class="price-1">$100</p>
+                        <p class="Precio">$60</p>
+                    </div>
+                    <a href="#" class="agregar-carrito btn-3" data-id="2" >Agregar al carrito</a>
+                </div>
+                <div class="categorie-img">
+                    <img src="{% static 'images/p2.png' %}" alt="">
+                </div>
+            </div>
+
+            <!--Producto 3-->
+            <div class="categorie">
+                <div class="categorie-1">
+                    <h3>Promo 3</h3>
+                    <div class="prices">
+                        <p class="price-1">$125</p>
+                        <p class="Precio">$85</p>
+                    </div>
+                    <a href="#" class="agregar-carrito btn-3" data-id="3" >Agregar al carrito</a>
+                </div>
+                <div class="categorie-img">
+                    <img src="{% static 'images/p3.png' %}" alt="">
+                </div>
+            </div>
+
+            <!--Producto 4-->
+            <div class="categorie">
+                <div class="categorie-1">
+                    <h3>Promo 4</h3>
+                    <div class="prices">
+                        <p class="price-1">$110</p>
+                        <p class="Precio">$95</p>
+                    </div>
+                    <a href="#" class="agregar-carrito btn-3" data-id="4" >Agregar al carrito</a>
+                </div>
+                <div class="categorie-img">
+                    <img src="{% static 'images/p4.png' %}" alt="">
+                </div>
+
             </div>
         </div>
+
     </section>
 
     <hr>
@@ -159,11 +197,11 @@
                 <!--Producto 1-->
                 <div class="swiper-slide">
                     <div class="product">
-                        <img src="{% static 'images/ph1.png' %}" alt="">
+                        <img src="{% static 'images/ph10.png' %}" alt="">
                         <div class="product-txt">
-                            <h3>Elisyum</h3>
-                            <p>Calidad premium</p>
-                            <p class="precio" >$200</p>
+                            <h3>Pantalon de tela</h3>
+                            <p>Realza figura</p>
+                            <p class="precio" >$25</p>
                             <a href="#" class="agregar-carrito btn-3" data-id="5">Agregar al carrito</a>
                         </div>
                     </div>
@@ -172,11 +210,11 @@
                 <!--Producto 2-->
                 <div class="swiper-slide">
                     <div class="product">
-                        <img src="{% static 'images/ph2.png' %}" alt="">
+                        <img src="{% static 'images/p14.png' %}" alt="">
                         <div class="product-txt">
-                            <h3>Elisyum</h3>
-                            <p>Calidad premium</p>
-                            <p class="precio" >$200</p>
+                            <h3>Abrigo azul</h3>
+                            <p>Diseño a la moda vanguardista</p>
+                            <p class="precio" >$30</p>
                             <a href="#" class="agregar-carrito btn-3" data-id="6">Agregar al carrito</a>
                         </div>
                     </div>
@@ -185,11 +223,11 @@
                 <!--Producto 3-->
                 <div class="swiper-slide">
                     <div class="product">
-                        <img src="{% static 'images/ph3.png' %}" alt="">
+                        <img src="{% static 'images/ph9.png' %}" alt="">
                         <div class="product-txt">
-                            <h3>Elisyum</h3>
-                            <p>Calidad premium</p>
-                            <p class="precio" >$200</p>
+                            <h3>Pantalon para tiendas</h3>
+                            <p>Recomendado por el pato lucas</p>
+                            <p class="precio" >$30</p>
                             <a href="#" class="agregar-carrito btn-3" data-id="7">Agregar al carrito</a>
                         </div>
                     </div>
@@ -198,11 +236,11 @@
                 <!--Producto 4-->
                 <div class="swiper-slide">
                     <div class="product">
-                        <img src="{% static 'images/ph4.png' %}" alt="">
+                        <img src="{% static 'images/ph8.png' %}" alt="">
                         <div class="product-txt">
-                            <h3>Elisyum</h3>
-                            <p>Calidad premium</p>
-                            <p class="precio" >$200</p>
+                            <h3>Abrigo verde</h3>
+                            <p>Calidad y suavidad</p>
+                            <p class="precio" >$55.50</p>
                             <a href="#" class="agregar-carrito btn-3" data-id="8">Agregar al carrito</a>
                         </div>
                     </div>
@@ -220,7 +258,6 @@
     <hr>
 
     <!--Seccion 3: Productos-->
-
     <section class="products container" id="lista-3">
         <h2>Productos</h2>
         <div class="swiper mySwiper-2">
@@ -228,11 +265,11 @@
                 <!--Producto 1-->
                 <div class="swiper-slide">
                     <div class="product">
-                        <img src="{% static 'images/ph1.png' %}" alt="">
+                        <img src="{% static 'images/ph11.png' %}" alt="">
                         <div class="product-txt">
-                            <h3>Elisyum</h3>
-                            <p>Calidad premium</p>
-                            <p class="precio" >$200</p>
+                            <h3>Sudadera de gatitos</h3>
+                            <p>Extremadamente adorable</p>
+                            <p class="precio" >$35</p>
                             <a href="#" class="agregar-carrito btn-3" data-id="9">Agregar al carrito</a>
                         </div>
                     </div>
@@ -241,11 +278,11 @@
                 <!--Producto 2-->
                 <div class="swiper-slide">
                     <div class="product">
-                        <img src="{% static 'images/ph2.png' %}" alt="">
+                        <img src="{% static 'images/ph13.png' %}" alt="">
                         <div class="product-txt">
-                            <h3>Elisyum</h3>
-                            <p>Calidad premium</p>
-                            <p class="precio" >$200</p>
+                            <h3>Pantalon Blanco</h3>
+                            <p>Moldea la figura</p>
+                            <p class="precio" >$20</p>
                             <a href="#" class="agregar-carrito btn-3" data-id="10">Agregar al carrito</a>
                         </div>
                     </div>
@@ -254,11 +291,11 @@
                 <!--Producto 3-->
                 <div class="swiper-slide">
                     <div class="product">
-                        <img src="{% static 'images/ph3.png' %}" alt="">
+                        <img src="{% static 'images/ph12.png' %}" alt="">
                         <div class="product-txt">
-                            <h3>Elisyum</h3>
-                            <p>Calidad premium</p>
-                            <p class="precio" >$200</p>
+                            <h3>Camisa con estampado</h3>
+                            <p>Calidad de tela</p>
+                            <p class="precio" >$10</p>
                             <a href="#" class="agregar-carrito btn-3" data-id="11">Agregar al carrito</a>
                         </div>
                     </div>
@@ -267,11 +304,11 @@
                 <!--Producto 4-->
                 <div class="swiper-slide">
                     <div class="product">
-                        <img src="{% static 'images/ph4.png' %}" alt="">
+                        <img src="{% static 'images/ph16.png' %}" alt="">
                         <div class="product-txt">
-                            <h3>Elisyum</h3>
-                            <p>Calidad premium</p>
-                            <p class="precio" >$200</p>
+                            <h3>Chaqueta</h3>
+                            <p>Excelente calidad</p>
+                            <p class="precio" >$50</p>
                             <a href="#" class="agregar-carrito btn-3" data-id="12">Agregar al carrito</a>
                         </div>
                     </div>
@@ -288,67 +325,64 @@
     <footer class="footer container" >
         <!--Footer 1-->
         <div class="link">
-            <h3>Lorem</h3>
+            <h3>Sobre nosotros</h3>
 
             <ul>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
+                <li><a href="#">Quienes somos</a></li>
+                <li><a href="#">Blogger de moda</a></li>
+                <li><a href="#">Descuentos</a></li>
+                <li><a href="#">Empleo</a></li>
             </ul>
         </div>
 
         <!--Footer 2-->
         <div class="link">
-            <h3>Lorem</h3>
+            <h3>Ayuda y apoyo</h3>
 
             <ul>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
+                <li><a href="#">Info. de envio</a></li>
+                <li><a href="#">Devolución</a></li>
+                <li><a href="#">Reembolso</a></li>
+                <li><a href="#">Rastrear pedido</a></li>
             </ul>
         </div>
 
         <!--Footer 3-->
         <div class="link">
-            <h3>Lorem</h3>
+            <h3>Encuentranos en</h3>
 
             <ul>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Snapchat</a></li>
             </ul>
         </div>
 
         <!--Footer 4-->
         <div class="link">
-            <h3>Lorem</h3>
+            <h3>Servicio al cliente</h3>
 
             <ul>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
-                <li><a href="#">Lorem</a></li>
+                <li><a href="#">Contacto</a></li>
+                <li><a href="#">Pagos</a></li>
+                <li><a href="#">Puntos</a></li>
             </ul>
         </div>
 
         <!--Footer 5-->
         <div class="link">
-            <h3>Lorem</h3>
+            <h3>Las Divinas</h3>
 
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. At ducimus cumque nobis non blanditiis. Sequi maiores voluptate, libero modi aspernatur sit vel facilis nulla autem architecto! Laboriosam atque exercitationem quae?
+                Nadie pasa de esta esquina
+                Aquí mandan las divinas
+                Porque somos gasolina
+                Gasolina de verdad
             </p>
         </div>
 
     </footer>
-
-
-
-
-
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script> <!--Biblioteca-->

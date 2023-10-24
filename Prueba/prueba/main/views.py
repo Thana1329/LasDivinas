@@ -112,7 +112,11 @@ def detallesproductos(request, producto_id):
         form = ResenaForm(request.POST)
         if form.is_valid():
             comentario = form.cleaned_data['comentario']
-            Resena.objects.create(producto=producto, comentario=comentario)
+            puntuacion = request.POST['puntuacion']  # la puntuación del POST
+
+            # Crea la nueva reseña con el comentario y la puntuación
+            Resena.objects.create(producto=producto, comentario=comentario, puntuacion=puntuacion)
+
             # Redirige a la vista 'producto' con el parámetro producto_id
             url = reverse('main:producto', args=[producto_id])
             return redirect(url)
@@ -124,14 +128,13 @@ def detallesproductos(request, producto_id):
 
 
 
-
 def agregarcategoria(request):
     categorias = Categoria.objects.all()
     if request.method == "POST":
         form = CategoriaForm(request.POST)
         if form.is_valid():
             form.save() 
-            return redirect('main:productos')
+            return redirect('main:categorias')
     else:
         form = CategoriaForm()
 
@@ -156,7 +159,7 @@ def editarcategoria(request):
             
             categoria.save()
 
-            return redirect('main:agregar-categoria') 
+            return redirect('main:categorias') 
     else:
         form = CategoriaForm()
 
@@ -170,7 +173,7 @@ def eliminarcategoria(request):
         try:
             categoria = Categoria.objects.get(pk=categoria_id)
             categoria.delete()
-            return redirect('main:agregar-categoria')
+            return redirect('main:categorias')
         except Categoria.DoesNotExist:
             mensaje_error = "La categoria seleccionada no existe."
     categorias = Categoria.objects.all()

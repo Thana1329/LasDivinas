@@ -29,6 +29,7 @@ class Productos(models.Model):
 class Resena(models.Model):
     producto = models.ForeignKey(Productos, on_delete=models.CASCADE)
     comentario = models.TextField()
+    puntuacion = models.PositiveIntegerField(default=0)  # Campo para almacenar la puntuación
 
     def str(self):
         return f'Reseña de {self.producto.name}'

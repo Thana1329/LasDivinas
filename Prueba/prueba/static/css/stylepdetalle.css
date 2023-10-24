@@ -226,6 +226,15 @@ main {
 .fa-chevron-down:hover {
 	color: #1bbeb4;
 }
+
+.star-unselected-color {
+    color: white;
+}
+.star-selected-color {
+    color: yellow;
+	
+}
+
 .rating {
     display: inline-block;
     unicode-bidi: bidi-override;

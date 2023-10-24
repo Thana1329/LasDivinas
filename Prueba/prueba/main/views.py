@@ -42,11 +42,11 @@ def agregarproducto(request):
         form = AgregarproductosForm(request.POST, request.FILES)
         if form.is_valid():
             # Guarda el producto en la base de datos
-            form.save()  
+            form.save()
             return redirect('main:productos')
     else:
         form = AgregarproductosForm()
-    
+
     categorias = Categoria.objects.all() 
     return render(request, "agregar-productos.html", {"form": form, "categorias": categorias})
 
@@ -62,9 +62,9 @@ def editarproducto(request):
          # Obtener el producto seleccionado
         producto_id = request.POST.get('product_select') 
         # Cargar el producto a editar
-        producto = cargar_producto(producto_id)  
+        producto = cargar_producto(producto_id)
 
-       
+
         if producto is not None:
             form = AgregarproductosForm(request.POST, request.FILES, instance=producto)
 
@@ -134,11 +134,11 @@ def agregarcategoria(request):
         form = CategoriaForm(request.POST)
         if form.is_valid():
             form.save() 
-            return redirect('main:categorias')
+            return redirect('main:productos')
     else:
         form = CategoriaForm()
 
-     
+
     return render(request, 'agregar-categoria.html', {"form": form, "categorias": categorias})
 
 
@@ -156,10 +156,10 @@ def editarcategoria(request):
             categoria.name = form.cleaned_data['name']
             categoria.description = form.cleaned_data['description']
 
-            
+
             categoria.save()
 
-            return redirect('main:categorias') 
+            return redirect('main:agregar-categoria') 
     else:
         form = CategoriaForm()
 
@@ -173,7 +173,7 @@ def eliminarcategoria(request):
         try:
             categoria = Categoria.objects.get(pk=categoria_id)
             categoria.delete()
-            return redirect('main:categorias')
+            return redirect('main:agregar-categoria')
         except Categoria.DoesNotExist:
             mensaje_error = "La categoria seleccionada no existe."
     categorias = Categoria.objects.all()
